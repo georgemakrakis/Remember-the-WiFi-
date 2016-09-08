@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>Remember the WiFi?</font>"));
         loadList();
-
     }
 
     public void refreshClick(View v)
@@ -48,16 +47,15 @@ public class MainActivity extends AppCompatActivity
         /*Intent intent = getIntent();
         finish();
         startActivity(intent);*/
-
         loadList();
     }
+
     //executing all necessary adb commands
     public void commands()
     {
         //transeferring file form /data/misc/wifi/wpa_supplicant.conf to app's files directory
-        String[] commands2= {"grep -e ssid -e psk /data/misc/wifi/wpa_supplicant.conf > /data/data/com.example.george.remembermywifi/files/wpa_supplicant.txt"};
+        String[] commands2 = {"grep -e ssid -e psk /data/misc/wifi/wpa_supplicant.conf > /data/data/com.example.george.remembermywifi/files/wpa_supplicant.txt"};
         RunAsRoot(commands2);
-
 
         //changing file permissions so the file could be read next
         String[] commands3 = {"cd /data/data/com.example.george.remembermywifi/files/ && chmod 666 wpa_supplicant.txt"};
@@ -71,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         catch (InterruptedException e)
         {
             e.printStackTrace();
+            Dialog("Something interrupted the execution of the app. Please close the app and try again.");
         }
     }
 
@@ -84,19 +83,19 @@ public class MainActivity extends AppCompatActivity
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l)
             {
                 //getting selected item and sending to CLIPBOARD_TEXT the pattern between double quotes
-                String sel=listView.getItemAtPosition(i).toString();
-                String CLIPBOARD_TEXT="";
+                String sel = listView.getItemAtPosition(i).toString();
+                String CLIPBOARD_TEXT = "";
                 Pattern pattern = Pattern.compile("\"(.*?)\"");//regular expression to choose all text between "..."
                 Matcher matcher = pattern.matcher(sel);
                 if (matcher.find())
                 {
-                    CLIPBOARD_TEXT=matcher.group(1);
+                    CLIPBOARD_TEXT = matcher.group(1);
                 }
                 // copying data to clipboard
                 ClipData clip = ClipData.newPlainText(CLIPBOARD_TEXT, CLIPBOARD_TEXT);
-                ClipboardManager clipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(MainActivity.this,"Copied!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Copied!", Toast.LENGTH_LONG).show();
                 return true;
             }
         });
@@ -123,10 +122,10 @@ public class MainActivity extends AppCompatActivity
             }
             buffreader.close();
 
-            /*if(lines.isEmpty())
+            if(lines.isEmpty())
             {
-                Dialog("No networks exist in your device.");
-            }*/
+                Dialog("No wireless networks exist in your device.");
+            }
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_listview, lines);
 
@@ -137,19 +136,18 @@ public class MainActivity extends AppCompatActivity
         catch (java.io.FileNotFoundException e)
         {
             e.printStackTrace();
-            Dialog("An error occurred with the networks file.");
+            Dialog("An error occurred with the networks file. Please click the refresh button.");
         }
         catch (java.io.IOException e)
         {
             e.printStackTrace();
-            Dialog("An error occurred with the networks file.");
+            Dialog("An error occurred with the networks file. Please close the app and try again.");
         }
     }
 
     //function to excecute adb shell commands
     public void RunAsRoot(String[] cmds)
     {
-
         Process p = null;
         try
         {
@@ -165,7 +163,7 @@ public class MainActivity extends AppCompatActivity
         catch (IOException e)
         {
             e.printStackTrace();
-            Dialog("Your device is not rooted!");
+            Dialog("Your device is not rooted! Please root your device to proceed.");
         }
     }
 
