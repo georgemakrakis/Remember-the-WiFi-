@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.george.remembermywifi.MainActivity">
+     <item
+        android:id="@+id/rate"
+        android:orderInCategory="100"
+        android:title="Rate"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/contact"
+        android:orderInCategory="100"
+        android:title="Contact"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/about"
+        android:orderInCategory="100"
+        android:title="About"
+        app:showAsAction="never" />
+</menu>
