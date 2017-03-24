@@ -26,6 +26,7 @@
         android:clickable="true"
         android:onClick="refreshClick"
         android:src="@drawable/refresh"
+        android:background="@color/colorFAB"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true">

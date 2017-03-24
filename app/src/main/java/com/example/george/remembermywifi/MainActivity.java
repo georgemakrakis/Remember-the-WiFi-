@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>Remember the WiFi?</font>"));
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#FFFFFF'>Remember the WiFi?</font>"));
         loadList();
     }
     @Override
