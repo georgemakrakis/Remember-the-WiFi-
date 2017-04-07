@@ -102,6 +102,12 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this,About.class);
             startActivity(i);
         }
+        //When About action item is clicked
+        else if (id == R.id.help)
+        {
+            Intent i = new Intent(this,Help.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
     public void refreshClick(View v)

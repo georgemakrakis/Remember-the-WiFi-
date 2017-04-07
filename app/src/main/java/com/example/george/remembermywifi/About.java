@@ -14,6 +14,7 @@ public class About extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        setTitle("About");
     }
     public void repoPageClick(View v)
     {
