@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:design:24.0.0'
     compile 'com.android.support.constraint:constraint-layout:+'
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'org.testng:testng:6.9.6'
 }
